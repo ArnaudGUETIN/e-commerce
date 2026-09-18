@@ -1,6 +1,7 @@
 package com.yirmea;
 
 import com.yirmea.dao.UserRepository;
+import com.yirmea.dto.CategoryDTO;
 import com.yirmea.entities.Category;
 import com.yirmea.entities.Item;
 import com.yirmea.entities.User;
@@ -43,7 +44,7 @@ public class BackendApplication implements CommandLineRunner {
         Category sm = categoryService.addCategory("Smartphones");
         Category sv = categoryService.addCategory("Serveurs");
 
-        for(Category c : categoryService.getAllCategories()){
+        for(CategoryDTO c : categoryService.getAllCategories()){
             System.out.println("categorie :" +c.getLabel());
             System.out.println("--------------------------------");
         }

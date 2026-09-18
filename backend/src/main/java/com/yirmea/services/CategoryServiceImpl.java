@@ -2,10 +2,12 @@ package com.yirmea.services;
 
 import com.yirmea.dao.CategoryRepository;
 import com.yirmea.dao.ItemRepository;
+import com.yirmea.dto.CategoryDTO;
 import com.yirmea.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -15,22 +17,22 @@ public class CategoryServiceImpl implements CategoryService{
 
 
     @Override
-    public Category addCategory(Category category) {
-        return this.categoryRepository.save(category);
+    public CategoryDTO addCategory(Category category) {
+        return mapCategoryToCategoryDTO(this.categoryRepository.save(category));
     }
 
     @Override
-    public Category addCategory(String label) {
+    public CategoryDTO addCategory(String label) {
         Category category =  new Category();
         category.setLabel(label);
         return this.addCategory(category);
     }
 
     @Override
-    public Category updateCategory(Long id, String label) {
+    public CategoryDTO updateCategory(Long id, String label) {
         Category category = this.categoryRepository.getOne(id);
         category.setLabel(label);
-        return this.categoryRepository.save(category);
+        return mapCategoryToCategoryDTO(this.categoryRepository.save(category));
     }
 
     @Override
@@ -40,7 +42,18 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        return this.categoryRepository.findAll();
+    public List<CategoryDTO> getAllCategories() {
+        List<Category> all = this.categoryRepository.findAll();
+        List<CategoryDTO> categoryDTOS = new ArrayList<>();
+        for (Category c : all){
+            categoryDTOS.add(mapCategoryToCategoryDTO(c));
+        }
+        return categoryDTOS;
+    }
+
+    public CategoryDTO mapCategoryToCategoryDTO(Category c){
+        CategoryDTO categoryDTO = new CategoryDTO();
+        categoryDTO.setLabel(c.getLabel());
+        return categoryDTO;
     }
 }
