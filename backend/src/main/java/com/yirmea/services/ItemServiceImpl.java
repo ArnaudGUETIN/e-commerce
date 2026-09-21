@@ -16,6 +16,7 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Item addItem(Item item) {
+
         return this.itemRepository.save(item);
     }
 
@@ -38,7 +39,7 @@ public class ItemServiceImpl implements ItemService{
 
     @Override
     public Item updateItem(Long id, String label) {
-        Item item = this.itemRepository.getOne(id);
+        Item item = this.itemRepository.getReferenceById(id);
         item.setName(label);
         return this.itemRepository.save(item);
     }

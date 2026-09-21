@@ -30,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryDTO updateCategory(Long id, String label) {
-        Category category = this.categoryRepository.getOne(id);
+        Category category = this.categoryRepository.getReferenceById(id);
         category.setLabel(label);
         return mapCategoryToCategoryDTO(this.categoryRepository.save(category));
     }
@@ -57,3 +57,4 @@ public class CategoryServiceImpl implements CategoryService{
         return categoryDTO;
     }
 }
+
