@@ -2,8 +2,10 @@ package com.yirmea.services;
 
 import com.yirmea.dao.OrderRepository;
 import com.yirmea.dto.OrderDTO;
+import com.yirmea.entities.Cart;
 import com.yirmea.entities.Category;
 import com.yirmea.entities.Order;
+import com.yirmea.entities.Orderline;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
@@ -52,6 +54,24 @@ public class OrderServiceImpl implements OrderService{
             orderDTOS.add(mapOrderToOrderDTO(c));
         }
         return orderDTOS;
+    }
+
+    @Override
+    public OrderDTO cartToOrder(Cart cart) {
+        Order order = new Order();
+        List<Orderline> orderlines = new ArrayList<>();
+        BigDecimal totalAmount = BigDecimal.ZERO;
+        cart.getCartlines().forEach(cl -> {
+            Orderline orderline = new Orderline();
+            orderline.setItem(cl.getItem());
+            orderline.setQuantity(cl.getQuantity());
+            orderlines.add(orderline);
+            totalAmount.add(orderline.getUnitPrice().multiply(orderline.getQuantity()));
+        });
+       order.setTotalAmount(totalAmount);
+       order.setOrderlines(orderlines);
+       order.setClient(cart.getClient());
+        return addOrder(order);
     }
 
     public OrderDTO mapOrderToOrderDTO(Order o){

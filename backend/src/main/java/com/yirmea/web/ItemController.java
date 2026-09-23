@@ -1,5 +1,6 @@
 package com.yirmea.web;
 
+import com.yirmea.dto.ItemDTO;
 import com.yirmea.entities.Category;
 import com.yirmea.entities.Item;
 import com.yirmea.services.CategoryService;
@@ -16,7 +17,7 @@ public class ItemController {
     private ItemService itemService ;
 
     @GetMapping("/items")
-    public List<Item> getAll(){
+    public List<ItemDTO> getAll(){
         return this.itemService.getAllItems();
     }
 }

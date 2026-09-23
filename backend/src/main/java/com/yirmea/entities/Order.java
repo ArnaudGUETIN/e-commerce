@@ -17,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 
 @Entity
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +25,8 @@ public class Order {
     private LocalDateTime commandDate;
     private String commandStatus;
     private BigDecimal totalAmount;
-    @OneToMany
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Orderline> orderlines = new ArrayList<>();
+    @ManyToOne
+    Client client;
 }

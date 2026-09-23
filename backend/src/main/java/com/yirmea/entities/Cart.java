@@ -22,9 +22,8 @@ public class Cart {
     private Long id;
     private LocalDateTime creationDate;
     private BigDecimal total;
-    @OneToMany
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Cartline> cartlines = new ArrayList<>();
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false, unique = true)
-    private User user;
+    @OneToOne
+    Client client;
 }

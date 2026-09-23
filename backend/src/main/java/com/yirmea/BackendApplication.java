@@ -2,6 +2,7 @@ package com.yirmea;
 
 import com.yirmea.dao.UserRepository;
 import com.yirmea.dto.CategoryDTO;
+import com.yirmea.dto.ItemDTO;
 import com.yirmea.entities.Category;
 import com.yirmea.entities.Item;
 import com.yirmea.entities.User;
@@ -39,33 +40,22 @@ public class BackendApplication implements CommandLineRunner {
         user.setName("Eliel");
         this.userRepository.save(user);
 
-        Category ci = categoryService.addCategory("Imprimantes");
-        Category o =categoryService.addCategory("Ordinateurs");
-        Category sm = categoryService.addCategory("Smartphones");
-        Category sv = categoryService.addCategory("Serveurs");
+        CategoryDTO ci = categoryService.addCategory("Imprimantes");
+        CategoryDTO o =categoryService.addCategory("Ordinateurs");
+        CategoryDTO sm = categoryService.addCategory("Smartphones");
+        CategoryDTO sv = categoryService.addCategory("Serveurs");
 
         for(CategoryDTO c : categoryService.getAllCategories()){
             System.out.println("categorie :" +c.getLabel());
             System.out.println("--------------------------------");
         }
 
-        Item i1 = itemService.addItem("HPLaserJet","Une imprimante stylé", BigDecimal.valueOf(150000),5);
-        Item i2 = itemService.addItem("MacBook Pro","Un pc", BigDecimal.valueOf(500000),15);
-        Item i3 = itemService.addItem("Samsung galaxy s26","un telephone", BigDecimal.valueOf(400000),50);
-        Item i4 = itemService.addItem("Intel lite pro","un serveur", BigDecimal.valueOf(15000000),2);
-
-        i1.setCategory(ci);
-        itemService.saveItem(i1);
-
-        i2.setCategory(o);
-        itemService.saveItem(i2);
+        ItemDTO i1 = itemService.addItem("HPLaserJet","Une imprimante stylé", BigDecimal.valueOf(150000),5);
+        ItemDTO i2 = itemService.addItem("MacBook Pro","Un pc", BigDecimal.valueOf(500000),15);
+        ItemDTO i3 = itemService.addItem("Samsung galaxy s26","un telephone", BigDecimal.valueOf(400000),50);
+        ItemDTO i4 = itemService.addItem("Intel lite pro","un serveur", BigDecimal.valueOf(15000000),2);
 
 
-        i3.setCategory(sm);
-        itemService.saveItem(i3);
-
-        i4.setCategory(sv);
-        itemService.saveItem(i4);
 
 
 

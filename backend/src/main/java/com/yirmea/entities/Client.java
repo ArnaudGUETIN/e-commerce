@@ -22,5 +22,5 @@ public class Client {
     private Long id;
     private String address;
     @OneToMany
-    List<Order> carts = new ArrayList<>();
+    List<Order> orders = new ArrayList<>();
 }

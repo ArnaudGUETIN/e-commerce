@@ -1,6 +1,7 @@
 package com.yirmea.services;
 
 import com.yirmea.dto.OrderDTO;
+import com.yirmea.entities.Cart;
 import com.yirmea.entities.Order;
 
 import java.math.BigDecimal;
@@ -13,4 +14,5 @@ public interface OrderService{
     OrderDTO updateOrder(Long id, LocalDateTime commandDate, String commandStatus, BigDecimal totalAmount);
     boolean removeOrder(Long id);
     List<OrderDTO> getAllOrders();
+    OrderDTO cartToOrder(Cart cart);
 }

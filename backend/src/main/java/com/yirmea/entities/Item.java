@@ -22,6 +22,6 @@ public class Item {
     private BigDecimal price;
     private int stock;
     private String imageUrl;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     Category category;
 }
