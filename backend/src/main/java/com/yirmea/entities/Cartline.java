@@ -21,16 +21,17 @@ public class Cartline {
     @Column(updatable = false)
     private BigDecimal quantity;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cart_id", nullable = false, unique = true)
-    private Cart cart;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_id", nullable = false, unique = true)
+    @JoinColumn(name = "itemId", nullable = false, unique = true)
     private Item item;
-
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cartId", nullable = false, unique = true)
+    private Cart cart;
     public BigDecimal getUnitPrice() {
 
         return item.getPrice();
-
+    }
+    public int getStock(){
+        return item.getStock();
     }
 }
 

@@ -21,9 +21,9 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDateTime creationDate;
-    private BigDecimal total;
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Cartline> cartlines = new ArrayList<>();
     @OneToOne
-    Client client;
+    @JoinColumn(name = "userId", nullable = false, unique = true)
+    User user;
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Cartline> cartlines = new ArrayList<>();
 }

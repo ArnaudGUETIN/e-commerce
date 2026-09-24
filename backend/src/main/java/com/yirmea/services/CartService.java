@@ -5,6 +5,7 @@ import com.yirmea.dto.CartlineDTO;
 import com.yirmea.entities.Cart;
 import com.yirmea.entities.Cartline;
 import com.yirmea.entities.Item;
+import com.yirmea.entities.Orderline;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -14,13 +15,11 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CartService {
-    CartDTO addItemToCart(Long user_id, Long item_id);
-    CartDTO createCart(LocalDateTime creationDate, BigDecimal total);
-    CartDTO createCart(Cart cart);
-    CartlineDTO createCartline(Cartline Cartline);
-    CartlineDTO createCartline( int amount,Long cart_id,Long item_id);
-    CartlineDTO updateCartlineAmount(Long cartline_id, int amount);
-    CartlineDTO removeCartline(Long cartline_id);
-    boolean removeCart(Long id);
-    List<CartDTO> getAllCartlines();
+    CartDTO addCart(Cart cart);
+    CartDTO addItemToCart(Long id);
+    CartDTO clearCart(List<Orderline> orderlines);
+    CartDTO totalAmount(List<Orderline> orderlines);
+    CartDTO confirmCart(Cart cart);
 }
+
+

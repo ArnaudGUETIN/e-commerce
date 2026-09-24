@@ -23,10 +23,13 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private LocalDateTime commandDate;
-    private String commandStatus;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "commandStatus")
+    private Status commandStatus;
     private BigDecimal totalAmount;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Orderline> orderlines = new ArrayList<>();
+    private List<Orderline> orderlines = new ArrayList<>();
     @ManyToOne
-    Client client;
+    @JoinColumn(name="userId", nullable = false)
+    User user;
 }

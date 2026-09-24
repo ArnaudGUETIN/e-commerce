@@ -19,5 +19,5 @@ public class Category {
     private Long id;
     private String label;
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
-    List<Item> items = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
 }

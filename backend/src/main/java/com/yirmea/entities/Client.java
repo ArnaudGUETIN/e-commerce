@@ -21,6 +21,11 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String address;
-    @OneToMany
-    List<Order> orders = new ArrayList<>();
+    private String phone;
+    private String city;
+    private String country;
+    @OneToOne
+    @JoinColumn(name = "userId", nullable = false, unique = true)
+    private User user;
+
 }
