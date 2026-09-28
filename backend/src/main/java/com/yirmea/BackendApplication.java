@@ -35,26 +35,6 @@ public class BackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        User user = new User();
-        user.setEmail("g@gmail.com");
-        user.setName("Eliel");
-        this.userRepository.save(user);
-
-        CategoryDTO ci = categoryService.addCategory("Imprimantes");
-        CategoryDTO o =categoryService.addCategory("Ordinateurs");
-        CategoryDTO sm = categoryService.addCategory("Smartphones");
-        CategoryDTO sv = categoryService.addCategory("Serveurs");
-
-        for(CategoryDTO c : categoryService.getAllCategories()){
-            System.out.println("categorie :" +c.getLabel());
-            System.out.println("--------------------------------");
-        }
-
-        ItemDTO i1 = itemService.addItem("HPLaserJet","Une imprimante stylé", BigDecimal.valueOf(150000),5);
-        ItemDTO i2 = itemService.addItem("MacBook Pro","Un pc", BigDecimal.valueOf(500000),15);
-        ItemDTO i3 = itemService.addItem("Samsung galaxy s26","un telephone", BigDecimal.valueOf(400000),50);
-        ItemDTO i4 = itemService.addItem("Intel lite pro","un serveur", BigDecimal.valueOf(15000000),2);
-
 
 
 

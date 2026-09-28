@@ -25,7 +25,10 @@ public class Client {
     private String city;
     private String country;
     @OneToOne
-    @JoinColumn(name = "userId", nullable = false, unique = true)
     private User user;
+    @OneToOne
+    Cart cart;
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
 
 }

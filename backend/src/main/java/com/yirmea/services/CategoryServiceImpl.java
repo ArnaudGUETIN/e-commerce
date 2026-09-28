@@ -6,6 +6,7 @@ import com.yirmea.dto.CategoryDTO;
 import com.yirmea.entities.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import static com.yirmea.mapper.mapCategoryToCategoryDTO.mapCategoryToCategoryDTO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,8 +24,9 @@ public class CategoryServiceImpl implements CategoryService{
 
     @Override
     public CategoryDTO addCategory(String label) {
-        Category category =  new Category();
-        category.setLabel(label);
+        Category category =  Category.builder()
+                .label(label)
+                .build();
         return this.addCategory(category);
     }
 
@@ -51,10 +53,6 @@ public class CategoryServiceImpl implements CategoryService{
         return categoryDTOS;
     }
 
-    public CategoryDTO mapCategoryToCategoryDTO(Category c){
-        CategoryDTO categoryDTO = new CategoryDTO();
-        categoryDTO.setLabel(c.getLabel());
-        return categoryDTO;
-    }
+
 }
 

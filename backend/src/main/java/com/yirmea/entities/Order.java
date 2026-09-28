@@ -30,6 +30,5 @@ public class Order {
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orderline> orderlines = new ArrayList<>();
     @ManyToOne
-    @JoinColumn(name="userId", nullable = false)
-    User user;
+    Client client;
 }

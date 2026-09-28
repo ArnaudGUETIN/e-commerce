@@ -14,4 +14,6 @@ public interface ItemService {
     ItemDTO getItemDetails(Long id);
     boolean removeItem(Long id);
     List<ItemDTO> getAllItems();
+    ItemDTO affectToCategory(Long idItem, Long idCat);
+
 }

@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService{
     public OrderDTO addOrder(LocalDateTime commandDate, String commandStatus, BigDecimal totalAmount) {
         Order order = new Order();
         order.setCommandDate(commandDate);
-        order.setCommandStatus(commandStatus);
+        //order.setCommandStatus(commandStatus);
         order.setTotalAmount(totalAmount);
         return this.addOrder(order);
     }
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService{
     public OrderDTO updateOrder(Long id, LocalDateTime commandDate, String commandStatus, BigDecimal totalAmount) {
         Order order = this.orderRepository.getReferenceById(id);
         order.setCommandDate(commandDate);
-        order.setCommandStatus(commandStatus);
+        //order.setCommandStatus(commandStatus);
         order.setTotalAmount(totalAmount);
         return mapOrderToOrderDTO(this.orderRepository.save(order));
     }
@@ -70,14 +70,14 @@ public class OrderServiceImpl implements OrderService{
         });
        order.setTotalAmount(totalAmount);
        order.setOrderlines(orderlines);
-       order.setClient(cart.getClient());
+      // order.setClient(cart.getClient());
         return addOrder(order);
     }
 
     public OrderDTO mapOrderToOrderDTO(Order o){
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setCommandDate(o.getCommandDate());
-        orderDTO.setCommandStatus(o.getCommandStatus());
+        //orderDTO.setCommandStatus(o.getCommandStatus());
         orderDTO.setTotalAmount(o.getTotalAmount());
         return orderDTO;
     }

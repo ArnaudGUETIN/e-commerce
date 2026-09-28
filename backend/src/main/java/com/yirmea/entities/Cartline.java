@@ -24,7 +24,6 @@ public class Cartline {
     @JoinColumn(name = "itemId", nullable = false, unique = true)
     private Item item;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "cartId", nullable = false, unique = true)
     private Cart cart;
     public BigDecimal getUnitPrice() {
 

@@ -3,7 +3,7 @@ package com.yirmea.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.management.relation.Role;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,4 @@ public class User {
     private Role role;
     @OneToOne
     private Client client;
-    @OneToOne
-    Cart cart;
-    @OneToMany
-    private List<Order> orders = new ArrayList<>();
 }
