@@ -1,6 +1,6 @@
 package com.yirmea.entities;
 
-public enum Status {
+public enum OrderStatus {
     PENDING,
     PAID,
     SHIPPED,

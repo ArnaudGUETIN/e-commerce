@@ -1,9 +1,11 @@
 package com.yirmea.mapper;
 
+import com.yirmea.dto.CartDTO;
 import com.yirmea.entities.Cart;
 
-public class mapCartToCartDTO {
-    private mapCartToCartDTO(Cart cart){
+import java.time.LocalDateTime;
 
-    }
+public class mapCartToCartDTO {
+
 }
+

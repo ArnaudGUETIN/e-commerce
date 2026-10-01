@@ -16,10 +16,10 @@ import java.util.List;
 
 public interface CartService {
     CartDTO addCart(Cart cart);
-    CartDTO addItemToCart(Long id);
-    CartDTO clearCart(List<Orderline> orderlines);
-    CartDTO totalAmount(List<Orderline> orderlines);
+    CartDTO clearCart(List<Cartline> cartlines);
+    CartDTO totalAmount(List<Cartline> cartlines);
     CartDTO confirmCart(Cart cart);
+
 }
 
 

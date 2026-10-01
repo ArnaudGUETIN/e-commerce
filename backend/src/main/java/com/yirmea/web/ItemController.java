@@ -34,5 +34,7 @@ public class ItemController {
         return this.itemService.affectToCategory(idItem,idCat);
     }
 
+    @PostMapping
+
 
 }

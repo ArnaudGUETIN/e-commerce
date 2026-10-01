@@ -22,8 +22,7 @@ public class Cart {
     private Long id;
     private LocalDateTime creationDate;
     @OneToOne
-    @JoinColumn(name = "userId", nullable = false, unique = true)
-    User user;
+    Client client;
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Cartline> cartlines = new ArrayList<>();
 }

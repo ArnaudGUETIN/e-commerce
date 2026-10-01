@@ -25,7 +25,7 @@ public class Order {
     private LocalDateTime commandDate;
     @Enumerated(EnumType.STRING)
     @Column(name = "commandStatus")
-    private Status commandStatus;
+    private OrderStatus commandStatus;
     private BigDecimal totalAmount;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Orderline> orderlines = new ArrayList<>();

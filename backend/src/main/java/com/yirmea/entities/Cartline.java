@@ -20,8 +20,7 @@ public class Cartline {
     private BigDecimal unitPrice;
     @Column(updatable = false)
     private BigDecimal quantity;
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "itemId", nullable = false, unique = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private Item item;
     @ManyToOne(fetch = FetchType.LAZY)
     private Cart cart;

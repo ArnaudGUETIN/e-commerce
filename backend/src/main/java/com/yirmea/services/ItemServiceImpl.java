@@ -50,11 +50,12 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
-    public ItemDTO getItemDetails(Long id) {
+    public ItemDTO getItem(Long id) {
         Item item = this.itemRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Item not found with: " + id));
         return mapItemToItemDTO(item);
     }
+
 
     @Override
     public boolean removeItem(Long id) {
