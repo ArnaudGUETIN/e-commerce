@@ -70,7 +70,7 @@ public class OrderServiceImpl implements OrderService{
         });
        order.setTotalAmount(totalAmount);
        order.setOrderlines(orderlines);
-      // order.setClient(cart.getClient());
+      // 0 order.setClient(cart.getClient());
         return addOrder(order);
     }
 
