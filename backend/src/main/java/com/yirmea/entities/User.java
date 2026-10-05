@@ -30,4 +30,5 @@ public class User {
     private Role role;
     @OneToOne
     private Client client;
+
 }

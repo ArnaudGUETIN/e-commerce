@@ -3,6 +3,7 @@ package com.yirmea.services;
 import com.yirmea.dao.ClientRepository;
 import com.yirmea.dao.UserRepository;
 import com.yirmea.dto.ClientDTO;
+import com.yirmea.entities.Cart;
 import com.yirmea.entities.Client;
 import com.yirmea.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class ClientServiceImpl implements ClientService{
         client.setUser(user);
         return addClient(client);
     }
+
 
     @Override
     public ClientDTO updateClient(Long id, String address, String phone, String city, String country, Long userId) {

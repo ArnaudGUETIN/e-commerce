@@ -1,11 +1,16 @@
 package com.yirmea.services;
 
+import com.yirmea.dao.CartRepository;
 import com.yirmea.dao.UserRepository;
 import com.yirmea.dto.UserDTO;
+import com.yirmea.entities.Cart;
+import com.yirmea.entities.Client;
 import com.yirmea.entities.User;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,18 +19,30 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private CartRepository cartRepository;
+
     @Override
-    public UserDTO addUser(User user) {
+    public UserDTO createUser(User user) {
         return userMapper(this.userRepository.save(user));
     }
 
+    //On créer le panier et le client à l'inscription
     @Override
-    public UserDTO addUser(String email, String name, String password) {
-        User user = new User();
-        user.setEmail(email);
-        user.setName(name);
-        user.setPassword(password);
-        return addUser(user);
+    @Transactional
+    public UserDTO addUser(User user){
+        user.setDateCreation(LocalDateTime.now());
+
+        Client client = new Client();
+        client.setUser(user);
+        user.setClient(client);
+
+        Cart cart = new Cart();
+        cart.setCreationDate(LocalDateTime.now());
+        cart.setClient(client);
+        client.setCart(cart);
+
+        return createUser(user);
     }
 
     @Override
@@ -41,7 +58,6 @@ public class UserServiceImpl implements UserService{
     public UserDTO getUserById(Long id) {
         return userMapper(userRepository.getReferenceById(id));
     }
-
 
     @Override
     public List<UserDTO> getAllUsers() {

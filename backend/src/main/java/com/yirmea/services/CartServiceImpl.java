@@ -6,10 +6,12 @@ import com.yirmea.entities.Cart;
 import com.yirmea.entities.Cartline;
 import com.yirmea.entities.Orderline;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import java.util.List;
 
+@Service
 public class CartServiceImpl implements CartService {
 
     @Autowired
