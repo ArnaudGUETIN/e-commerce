@@ -9,6 +9,7 @@ public interface CategoryService {
     CategoryDTO addCategory(Category category);
     CategoryDTO addCategory(String label);
     CategoryDTO updateCategory(Long id, String label);
+    CategoryDTO getCategory(Long id);
     boolean removeCategory(Long id);
     List<CategoryDTO> getAllCategories();
 }

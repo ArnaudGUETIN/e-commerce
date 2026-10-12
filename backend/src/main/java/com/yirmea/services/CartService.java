@@ -2,6 +2,7 @@ package com.yirmea.services;
 
 import com.yirmea.dto.CartDTO;
 import com.yirmea.dto.CartlineDTO;
+import com.yirmea.dto.ClientDTO;
 import com.yirmea.entities.Cart;
 import com.yirmea.entities.Cartline;
 import com.yirmea.entities.Item;
@@ -15,7 +16,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CartService {
-    CartDTO addCart(Cart cart);
+    Cart addCart(Cart cart);
+    CartDTO getCart(Long id);
     CartDTO clearCart(List<Cartline> cartlines);
     CartDTO totalAmount(List<Cartline> cartlines);
     CartDTO confirmCart(Cart cart);

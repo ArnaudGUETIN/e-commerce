@@ -26,18 +26,23 @@ public class CategoryController {
     }
 
 
-    @PostMapping("add")
-    public CategoryDTO addCategorie(@RequestBody Category category){
+    @PostMapping("/{id}")
+    public CategoryDTO addCategory(@RequestBody Category category){
         return this.categoryService.addCategory(category.getLabel());
     }
 
-    @PutMapping("update")
-    public CategoryDTO updateCategorie(@RequestBody CategoryDTO categoryDTO){
+    @GetMapping("/{id}")
+    public CategoryDTO getCategory(@PathVariable("id") Long id){
+        return this.categoryService.getCategory(id);
+    }
+
+    @PutMapping("/{id}")
+    public CategoryDTO updateCategory(@RequestBody CategoryDTO categoryDTO){
         return this.categoryService.updateCategory(categoryDTO.getId(),categoryDTO.getLabel());
     }
 
     @DeleteMapping("delete/{id}/{id2}")
-    public boolean deleteCategorie(@RequestParam("idCat") Long idCat){
+    public boolean deleteCategory(@RequestParam("idCat") Long idCat){
         return this.categoryService.removeCategory(idCat);
     }
 }

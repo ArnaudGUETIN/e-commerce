@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
 
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class User {
     private String email;
     private String name;
     private String password;
+    @CreatedDate
     private LocalDateTime dateCreation;
     @Enumerated(EnumType.STRING)
     @Column(name = "role")

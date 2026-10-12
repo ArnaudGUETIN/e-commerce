@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -18,8 +19,15 @@ public class CartServiceImpl implements CartService {
     private CartRepository cartRepository;
 
     @Override
-    public CartDTO addCart(Cart cart) {
-        return mapCartToCartDTO(this.cartRepository.save(cart));
+    public Cart addCart(Cart cart) {
+
+        return this.cartRepository.save(cart);
+    }
+
+    @Override
+    public CartDTO getCart(Long id) {
+        Cart cart = this.cartRepository.getReferenceById(id);
+        return mapCartToCartDTO(cart);
     }
 
 

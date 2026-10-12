@@ -43,9 +43,13 @@ public class ItemServiceImpl implements ItemService{
     }
 
     @Override
-    public ItemDTO updateItem(Long id, String label) {
+    public ItemDTO updateItem(Long id, String name, String description, BigDecimal price, int Stock, String imageUrl) {
         Item item = this.itemRepository.getReferenceById(id);
-        item.setName(label);
+        item.setName(name);
+        item.setDescription(description);
+        item.setPrice(price);
+        item.setStock(item.getStock());
+        item.setImageUrl(imageUrl);
         return mapItemToItemDTO(this.itemRepository.save(item));
     }
 

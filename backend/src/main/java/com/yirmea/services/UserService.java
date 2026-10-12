@@ -10,6 +10,7 @@ public interface UserService {
     UserDTO addUser(User user);
     UserDTO updateUser(Long Id, String email, String name, String password);
     UserDTO getUserById(Long id);
+    Boolean deleteAccount(Long id);
     List<UserDTO> getAllUsers();
     User userDTOMapper(UserDTO userDTO);
 }

@@ -25,7 +25,7 @@ public class UserController {
 
     @PutMapping("/update")
     public UserDTO updateUser(@RequestBody UserDTO userDTO){
-        return null;
+        return this.userService.updateUser(userDTO.getId(), userDTO.getEmail(), userDTO.getName(), userDTO.getPassword());
     }
 
 }

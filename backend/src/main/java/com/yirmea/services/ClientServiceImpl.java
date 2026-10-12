@@ -2,6 +2,7 @@ package com.yirmea.services;
 
 import com.yirmea.dao.ClientRepository;
 import com.yirmea.dao.UserRepository;
+import com.yirmea.dto.CartDTO;
 import com.yirmea.dto.ClientDTO;
 import com.yirmea.entities.Cart;
 import com.yirmea.entities.Client;
@@ -18,6 +19,9 @@ public class ClientServiceImpl implements ClientService{
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    CartService cartService;
+
     @Override
     public ClientDTO addClient(Client client) {
 
@@ -27,12 +31,14 @@ public class ClientServiceImpl implements ClientService{
     @Override
     public ClientDTO addClient(String address, String phone, String city, String country, Long userId) {
         Client client = new Client();
+        Cart cart = cartService.addCart(new Cart());
         User user = this.userRepository.getReferenceById(userId);
         client.setAddress(address);
         client.setPhone(phone);
         client.setCity(city);
         client.setCountry(country);
         client.setUser(user);
+        client.setCart(cart);
         return addClient(client);
     }
 

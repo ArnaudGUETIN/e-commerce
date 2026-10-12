@@ -38,6 +38,12 @@ public class CategoryServiceImpl implements CategoryService{
     }
 
     @Override
+    public CategoryDTO getCategory(Long id) {
+        Category category = this.categoryRepository.getReferenceById(id);
+        return mapCategoryToCategoryDTO(category);
+    }
+
+    @Override
     public boolean removeCategory(Long id) {
         this.categoryRepository.deleteById(id);
         return true;

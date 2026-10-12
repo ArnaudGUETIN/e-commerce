@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDTO createUser(User user) {
+
         return userMapper(this.userRepository.save(user));
     }
 
@@ -31,17 +32,6 @@ public class UserServiceImpl implements UserService{
     @Override
     @Transactional
     public UserDTO addUser(User user){
-        user.setDateCreation(LocalDateTime.now());
-
-        Client client = new Client();
-        client.setUser(user);
-        user.setClient(client);
-
-        Cart cart = new Cart();
-        cart.setCreationDate(LocalDateTime.now());
-        cart.setClient(client);
-        client.setCart(cart);
-
         return createUser(user);
     }
 
@@ -57,6 +47,12 @@ public class UserServiceImpl implements UserService{
     @Override
     public UserDTO getUserById(Long id) {
         return userMapper(userRepository.getReferenceById(id));
+    }
+
+    @Override
+    public Boolean deleteAccount(Long id) {
+        this.userRepository.deleteById(id);
+        return true;
     }
 
     @Override

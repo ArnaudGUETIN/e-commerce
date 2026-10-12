@@ -10,7 +10,7 @@ public interface ItemService {
     ItemDTO addItem(Item item);
     ItemDTO addItem(String name, String desc, BigDecimal price, int stock);
     ItemDTO addItem(String name);
-    ItemDTO updateItem(Long id, String name);
+    ItemDTO updateItem(Long id, String name, String description, BigDecimal price, int Stock, String imageUrl );
     ItemDTO getItem(Long id);
     boolean removeItem(Long id);
     List<ItemDTO> getAllItems();

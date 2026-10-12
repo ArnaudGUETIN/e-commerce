@@ -1,5 +1,6 @@
 package com.yirmea.web;
 
+import com.yirmea.dao.ItemRepository;
 import com.yirmea.dto.ItemDTO;
 import com.yirmea.entities.Category;
 import com.yirmea.entities.Item;
@@ -16,24 +17,48 @@ public class ItemController {
 
     @Autowired
     private ItemService itemService ;
+
     @Autowired
     private ItemMapper itemMapper ;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @GetMapping("/")
     public List<ItemDTO> getAll(){
         return this.itemService.getAllItems();
     }
 
-    @PostMapping("add")
+    @PostMapping("/")
     public ItemDTO addItem(@RequestBody ItemDTO itemDTO){
         return this.itemService.addItem(itemMapper.mapItemDTOToItem(itemDTO));
     }
 
-    @PutMapping("affectToCategory")
-    public ItemDTO affect(@RequestParam("idItem") Long idItem, @RequestParam("idCat") Long idCat){
-        return this.itemService.affectToCategory(idItem,idCat);
+    @GetMapping("/{id}")
+    public ItemDTO getItem(@PathVariable("id") Long id){
+        return this.itemService.getItem(id);
     }
 
+    @PutMapping("/{id}")
+    public ItemDTO update(@PathVariable("id") Long id, @RequestBody ItemDTO itemDTO){
+        return this.itemService.updateItem(
+                id,
+                itemDTO.getName(),
+                itemDTO.getDescription(),
+                itemDTO.getPrice(),
+                itemDTO.getStock(),
+                itemDTO.getImageUrl());
+    }
+
+    @DeleteMapping("/{id}")
+    public boolean delete(@PathVariable("id")  Long id){
+        return this.itemService.removeItem(id);
+    }
+
+    @PutMapping("affectToCategory")
+    public ItemDTO affect(@RequestParam("idItem") Long idItem, @RequestParam("idCat") Long idCat){
+        return this.itemService.affectToCategory(idItem, idCat);
+    }
 
 
 }
