@@ -1,17 +1,22 @@
 package com.yirmea.web;
 
 import com.yirmea.dto.ClientDTO;
+import com.yirmea.mapper.clientMapper;
 import com.yirmea.services.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 public class ClientController {
 
     @Autowired
     private ClientService clientService;
+
+
+
+    @PostMapping
+    public ClientDTO addProfile(@RequestBody ClientDTO clientDTO){
+        return this.clientService.addClient(clientMapper.mapClientDTOToClient(clientDTO) );
+    }
 
     @GetMapping
     public ClientDTO getProfile(@PathVariable("id") Long id){
